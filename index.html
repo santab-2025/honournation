@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CyberShield Academy - a cybersecurity education and awareness website.">
+<title>CyberShield Academy | Cybersecurity Education</title>
+<style>
+:root{
+  --bg:#070b12;--panel:#0d1420;--panel2:#111b2a;--text:#e8f0ff;
+  --muted:#91a0b8;--accent:#45f0a0;--accent2:#55a7ff;--danger:#ff6577;
+  --border:#1d2a3d;--shadow:0 18px 50px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:
+radial-gradient(circle at 20% 0%,rgba(69,240,160,.09),transparent 30%),
+radial-gradient(circle at 90% 10%,rgba(85,167,255,.10),transparent 28%),var(--bg);
+color:var(--text);line-height:1.7}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(1120px,92%);margin:auto}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,11,18,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.navbar{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:1.25rem;font-weight:900;letter-spacing:.5px}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:22px;align-items:center}
+.navlinks a{color:var(--muted);font-size:.95rem}
+.navlinks a:hover{color:var(--accent)}
+.menu{display:none;background:none;border:1px solid var(--border);color:white;padding:8px 10px;border-radius:9px}
+.hero{min-height:680px;display:grid;place-items:center;text-align:center;padding:90px 0 70px}
+.badge{display:inline-block;padding:7px 13px;border:1px solid rgba(69,240,160,.35);border-radius:999px;color:var(--accent);background:rgba(69,240,160,.06);font-size:.85rem;margin-bottom:22px}
+.hero h1{font-size:clamp(2.7rem,7vw,5.6rem);line-height:1.02;max-width:950px;margin:auto}
+.gradient{background:linear-gradient(90deg,var(--accent),#b8ffd9,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:750px;margin:25px auto;color:var(--muted);font-size:1.1rem}
+.buttons{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-block;padding:13px 20px;border-radius:10px;border:1px solid var(--border);font-weight:800}
+.btn.primary{background:var(--accent);color:#04100a;border-color:var(--accent)}
+.btn.secondary{background:var(--panel);color:var(--text)}
+.btn:hover{transform:translateY(-2px)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+section{padding:85px 0}
+.section-head{max-width:720px;margin-bottom:35px}
+.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;font-size:.78rem;letter-spacing:2px}
+h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin:10px 0 15px}
+.section-head p,.muted{color:var(--muted)}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:17px;padding:25px;box-shadow:var(--shadow)}
+.card h3{margin:12px 0 8px;font-size:1.2rem}
+.card p{color:var(--muted)}
+.icon{width:45px;height:45px;display:grid;place-items:center;border-radius:12px;background:rgba(69,240,160,.09);border:1px solid rgba(69,240,160,.2);color:var(--accent);font-size:1.3rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.stat{padding:20px;text-align:center;border:1px solid var(--border);border-radius:14px;background:rgba(13,20,32,.75)}
+.stat strong{font-size:2rem;color:var(--accent);display:block}
+.timeline{display:grid;gap:15px}
+.step{display:grid;grid-template-columns:60px 1fr;gap:18px;align-items:start}
+.num{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#04100a;font-weight:900}
+.topic-list{display:grid;gap:12px}
+.topic{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:17px 18px;border:1px solid var(--border);border-radius:12px;background:var(--panel)}
+.topic span{color:var(--muted)}
+.progress{height:7px;background:#182334;border-radius:20px;overflow:hidden;margin-top:9px}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width 1s}
+.quiz{max-width:760px;margin:auto}
+.question{font-size:1.25rem;font-weight:800;margin-bottom:18px}
+.answers{display:grid;gap:10px}
+.answer{padding:13px 15px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text);text-align:left;cursor:pointer}
+.answer:hover{border-color:var(--accent)}
+.answer.correct{border-color:var(--accent);background:rgba(69,240,160,.08)}
+.answer.wrong{border-color:var(--danger);background:rgba(255,101,119,.08)}
+.result{margin-top:18px;color:var(--muted)}
+.terminal{background:#05080d;border:1px solid #1e2a3a;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.termbar{padding:12px 16px;background:#0c121c;color:#8392a8;font-size:.85rem}
+.termtext{padding:25px;font-family:ui-monospace,SFMono-Regular,monospace;color:#9effc8;min-height:230px;white-space:pre-wrap}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+input,textarea{width:100%;padding:14px;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:white;margin-bottom:12px;outline:none}
+textarea{min-height:140px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--accent)}
+footer{border-top:1px solid var(--border);padding:35px 0;color:var(--muted)}
+.notice{border-left:4px solid var(--accent);background:rgba(69,240,160,.06);padding:18px;border-radius:0 12px 12px 0;margin-top:20px}
+@media(max-width:800px){
+ .navlinks{display:none;position:absolute;top:72px;left:0;right:0;background:#080d15;padding:18px;flex-direction:column;border-bottom:1px solid var(--border)}
+ .navlinks.open{display:flex}.menu{display:block}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
+ .contact{grid-template-columns:1fr}.hero{min-height:auto;padding:75px 0}.step{grid-template-columns:45px 1fr}.num{width:42px;height:42px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <div class="container navbar">
+  <a class="logo" href="#home">Cyber<span>Shield</span></a>
+  <button class="menu" onclick="toggleMenu()">☰</button>
+  <div class="navlinks" id="navlinks">
+   <a href="#learn">Learn</a><a href="#threats">Threats</a><a href="#defense">Defense</a>
+   <a href="#quiz">Quiz</a><a href="#about">About</a>
+  </div>
+ </div>
+</nav>
+
+<main id="home">
+<section class="hero">
+ <div class="container">
+  <div class="badge">● CYBERSECURITY EDUCATION HUB</div>
+  <h1>Understand the digital world. <span class="gradient">Defend it.</span></h1>
+  <p>Explore cybersecurity concepts, common threats, defensive practices, privacy, secure development and responsible security research — all in one beginner-friendly website.</p>
+  <div class="buttons">
+   <a class="btn primary" href="#learn">Start Learning</a>
+   <a class="btn secondary" href="#quiz">Take the Quiz</a>
+  </div>
+  <div class="stats">
+   <div class="stat"><strong>06</strong>Core areas</div>
+   <div class="stat"><strong>12+</strong>Learning topics</div>
+   <div class="stat"><strong>08</strong>Security habits</div>
+   <div class="stat"><strong>100%</strong>Education</div>
+  </div>
+ </div>
+</section>
+
+<section id="learn">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">Start here</div><h2>Cybersecurity fundamentals</h2>
+   <p>Cybersecurity is the practice of protecting systems, networks, applications, devices and information from unauthorized access, disruption, alteration or destruction.</p>
+  </div>
+  <div class="grid">
+   <article class="card"><div class="icon">🛡</div><h3>Confidentiality</h3><p>Only authorized people or systems should be able to access sensitive information.</p></article>
+   <article class="card"><div class="icon">✓</div><h3>Integrity</h3><p>Information should remain accurate and protected from unauthorized modification.</p></article>
+   <article class="card"><div class="icon">⚡</div><h3>Availability</h3><p>Authorized users should be able to access systems and information when they need them.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="threats">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Know the risks</div><h2>Common cyber threats</h2><p>Learning how attacks work at a high level helps people recognize and prevent them.</p></div>
+  <div class="grid">
+   <article class="card"><div class="icon">✉</div><h3>Phishing</h3><p>Fraudulent messages designed to trick people into revealing credentials, opening malicious content or transferring money.</p></article>
+   <article class="card"><div class="icon">🔒</div><h3>Ransomware</h3><p>Malicious software can make data or systems unavailable and may demand payment from victims.</p></article>
+   <article class="card"><div class="icon">🧩</div><h3>Vulnerabilities</h3><p>Weaknesses in software, configurations or processes can create opportunities for unauthorized access.</p></article>
+   <article class="card"><div class="icon">👤</div><h3>Credential Theft</h3><p>Stolen passwords or session information can allow attackers to impersonate legitimate users.</p></article>
+   <article class="card"><div class="icon">🌐</div><h3>Social Engineering</h3><p>Attackers manipulate people rather than technology to obtain information or cause an unsafe action.</p></article>
+   <article class="card"><div class="icon">📡</div><h3>Unsafe Networks</h3><p>Poorly secured networks can expose devices and communications to interception or unwanted access.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="defense">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Build good habits</div><h2>Practical defense</h2><p>Security is a process. Small habits can dramatically reduce everyday risk.</p></div>
+  <div class="timeline">
+   <div class="step"><div class="num">01</div><div class="card"><h3>Use strong, unique passwords</h3><p>Use long passwords or passphrases and avoid reusing the same password across important accounts.</p></div></div>
+   <div class="step"><div class="num">02</div><div class="card"><h3>Turn on multi-factor authentication</h3><p>MFA adds another verification factor, making stolen passwords less useful by themselves.</p></div></div>
+   <div class="step"><div class="num">03</div><div class="card"><h3>Update your software</h3><p>Keep operating systems, browsers, applications and security tools updated to receive security fixes.</p></div></div>
+   <div class="step"><div class="num">04</div><div class="card"><h3>Back up important data</h3><p>Maintain reliable backups so accidental deletion, hardware failure or malware does not destroy your only copy.</p></div></div>
+   <div class="step"><div class="num">05</div><div class="card"><h3>Verify before you trust</h3><p>Check links, senders, requests for money and unexpected login prompts before taking action.</p></div></div>
+  </div>
+  <div class="notice"><strong>Responsible security:</strong> Only test systems you own or have explicit permission to assess. Learn in legal labs and controlled environments.</div>
+ </div>
+</section>
+
+<section id="topics">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Learning path</div><h2>Explore security topics</h2></div>
+  <div class="topic-list">
+   <div class="topic"><b>Network Security</b><span>Firewalls · segmentation · monitoring</span></div>
+   <div class="topic"><b>Web Security</b><span>Authentication · sessions · input validation</span></div>
+   <div class="topic"><b>Digital Privacy</b><span>Data minimization · permissions · tracking</span></div>
+   <div class="topic"><b>Incident Response</b><span>Identify · contain · recover · learn</span></div>
+   <div class="topic"><b>Security Operations</b><span>Logs · alerts · detection · analysis</span></div>
+   <div class="topic"><b>Secure Development</b><span>Threat modeling · code review · testing</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="lab">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Interactive demo</div><h2>Security console</h2><p>A harmless front-end simulation for experimenting with website design and JavaScript.</p></div>
+  <div class="terminal">
+   <div class="termbar">cybershield-console — educational simulation</div>
+   <div class="termtext" id="terminal">[system] CyberShield educational console ready.
+[system] Checking security awareness modules...
+[ok] Password hygiene ........ PASS
+[ok] MFA awareness ........... PASS
+[ok] Backup awareness ........ PASS
+[ok] Phishing awareness ...... PASS
+
+Type "help" using the button below to continue.</div>
+  </div>
+  <div class="buttons">
+   <button class="btn primary" onclick="consoleDemo('help')">Run help</button>
+   <button class="btn secondary" onclick="consoleDemo('scan')">Run safe demo</button>
+   <button class="btn secondary" onclick="consoleDemo('clear')">Clear</button>
+  </div>
+ </div>
+</section>
+
+<section id="quiz">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Test yourself</div><h2>Security awareness quiz</h2><p>Choose the best answer.</p></div>
+  <div class="card quiz">
+   <div class="question" id="question"></div>
+   <div class="answers" id="answers"></div>
+   <div class="result" id="result"></div>
+   <button class="btn primary" id="next" style="display:none;margin-top:18px" onclick="nextQuestion()">Next question</button>
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="container">
+  <div class="contact">
+   <div>
+    <div class="eyebrow">About this project</div><h2>Built for learning.</h2>
+    <p class="muted">This experimental site is a single HTML file, so it is easy to upload to GitHub Pages. You can later split the CSS and JavaScript into separate files.</p>
+    <div class="progress"><i id="bar"></i></div>
+    <p class="muted" style="margin-top:8px">Learning progress: <span id="pct">0%</span></p>
+   </div>
+   <div class="card">
+    <h3>Send a demo message</h3>
+    <input id="name" placeholder="Your name">
+    <input id="email" type="email" placeholder="Email">
+    <textarea id="message" placeholder="Your message"></textarea>
+    <button class="btn primary" onclick="sendDemo()">Submit demo</button>
+    <p class="muted" id="formResult" style="margin-top:10px"></p>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container">
+  <strong>CyberShield Academy</strong><br>
+  <span>Educational cybersecurity project • Built as a web-development experiment</span>
+ </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('navlinks').classList.toggle('open')}
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
+
+function consoleDemo(type){
+ const t=document.getElementById('terminal');
+ if(type==='clear'){t.textContent='[system] Console cleared. Ready.';return}
+ if(type==='help') t.textContent='Available educational commands:\\n\\nhelp  - show this menu\\nscan  - run a harmless simulated check\\nclear - clear the console\\n\\nNo real network or system scanning is performed.';
+ if(type==='scan') t.textContent='[demo] Starting harmless simulation...\\n[demo] Checking password policy... OK\\n[demo] Checking MFA policy...... OK\\n[demo] Checking backup status.... OK\\n[demo] Simulation complete.\\n\\nNo real devices, ports, accounts or networks were accessed.';
+}
+
+const questions=[
+ {q:'Which principle means information should remain accurate and unaltered?',a:['Confidentiality','Integrity','Availability','Obfuscation'],c:1},
+ {q:'What is a strong defense against password reuse?',a:['Using one password everywhere','Unique passwords and MFA','Sharing passwords with friends','Disabling updates'],c:1},
+ {q:'What should you do with an unexpected login link?',a:['Click immediately','Forward it to everyone','Verify the sender and destination first','Enter your password to test it'],c:2},
+ {q:'Where should you practice security testing?',a:['Any random website','Systems you own or have permission to test','Someone else’s account','Public infrastructure'],c:1}
+];
+let qi=0,score=0,answered=false;
+function renderQuestion(){
+ answered=false;
+ const x=questions[qi];
+ document.getElementById('question').textContent=(qi+1)+'. '+x.q;
+ document.getElementById('answers').innerHTML=x.a.map((v,i)=>`<button class="answer" onclick="answer(${i})">${v}</button>`).join('');
+ document.getElementById('result').textContent='';
+ document.getElementById('next').style.display='none';
+}
+function answer(i){
+ if(answered)return; answered=true;
+ const x=questions[qi];
+ document.querySelectorAll('.answer').forEach((b,n)=>{if(n===x.c)b.classList.add('correct');if(n===i&&i!==x.c)b.classList.add('wrong')});
+ if(i===x.c){score++;document.getElementById('result').textContent='Correct!';}
+ else document.getElementById('result').textContent='Not quite. Review the highlighted correct answer.';
+ document.getElementById('next').style.display='inline-block';
+ document.getElementById('bar').style.width=((qi+1)/questions.length*100)+'%';
+ document.getElementById('pct').textContent=Math.round((qi+1)/questions.length*100)+'%';
+}
+function nextQuestion(){
+ qi++;
+ if(qi>=questions.length){
+  document.getElementById('question').textContent='Quiz complete 🎉';
+  document.getElementById('answers').innerHTML='';
+  document.getElementById('result').textContent='Your score: '+score+'/'+questions.length+'. Refresh the page to try again.';
+  document.getElementById('next').style.display='none'; return;
+ }
+ renderQuestion();
+}
+function sendDemo(){
+ const name=document.getElementById('name').value.trim();
+ document.getElementById('formResult').textContent=name?'Thanks, '+name+'! This is a front-end demo; no message was actually sent.':'Please enter your name first.';
+}
+renderQuestion();
+</script>
+</body>
+</html>
